@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 };
 
 const OFFICES = [
-  { city: "Hyderabad", role: "Head office", lines: ["Road No. 3, Banjara Hills", "Hyderabad 500034"], phone: "+91 98490 11204" },
-  { city: "Bengaluru", role: "South desk", lines: ["12th Main, Indiranagar", "Bengaluru 560038"], phone: "+91 99000 55187" },
-  { city: "North Goa", role: "Coastal desk", lines: ["Anjuna–Assagao Road", "Assagao 403507"], phone: "+91 90300 74412" },
+  { city: "Hyderabad", role: "Head office", lines: ["Road No. 3, Banjara Hills", "Hyderabad 500034"], phone: "+91 98485 79053" },
+  { city: "Bengaluru", role: "South desk", lines: ["12th Main, Indiranagar", "Bengaluru 560038"], phone: "+91 98485 79053" },
+  { city: "North Goa", role: "Coastal desk", lines: ["Anjuna–Assagao Road", "Assagao 403507"], phone: "+91 98485 79053" },
 ];
 
 export default function ContactPage() {

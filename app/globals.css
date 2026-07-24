@@ -33,6 +33,7 @@
 
 * {
   border-color: var(--color-line);
+  transition: border-color 0.3s ease;
 }
 
 html {
@@ -40,18 +41,19 @@ html {
   color: var(--color-pearl);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-ui);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 450;
   line-height: 1.65;
   overflow-x: hidden;
   position: relative;
 }
 
-/* subtle ambient light, fixed behind everything */
+/* animated gradient light, fixed behind everything */
 body::before {
   content: "";
   position: fixed;
@@ -59,9 +61,18 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(48rem 38rem at 12% 8%, rgba(154, 133, 255, 0.06), transparent 60%),
-    radial-gradient(42rem 34rem at 88% 22%, rgba(240, 178, 63, 0.04), transparent 62%);
+    radial-gradient(48rem 38rem at 12% 8%, rgba(154, 133, 255, 0.08), transparent 60%),
+    radial-gradient(42rem 34rem at 88% 22%, rgba(240, 178, 63, 0.06), transparent 62%),
+    radial-gradient(46rem 40rem at 50% 70%, rgba(70, 224, 208, 0.05), transparent 64%);
   filter: blur(12px);
+  animation: ambient-shift 20s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-shift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(2%, -1%) rotate(1deg); }
+  66% { transform: translate(-1%, 2%) rotate(-0.5deg); }
+  100% { transform: translate(1%, -0.5%) rotate(0.5deg); }
 }
 
 ::selection {
@@ -89,15 +100,24 @@ body::before {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 0.94;
   letter-spacing: -0.018em;
 }
 
-.d-xl { font-size: clamp(0.9rem, 3.45vw, 4.2rem); }
-.d-lg { font-size: clamp(0.72rem, 1.92vw, 2.22rem); }
-.d-md { font-size: clamp(0.54rem, 1.02vw, 1.2rem); }
-.d-sm { font-size: clamp(0.39rem, 0.57vw, 0.72rem); }
+.iri-heading {
+  background: var(--iri);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: iri-shift 9s ease-in-out infinite alternate;
+}
+
+.d-xl { font-size: clamp(1.04rem, 3.97vw, 4.83rem); }
+.d-lg { font-size: clamp(0.83rem, 2.21vw, 2.55rem); }
+.d-md { font-size: clamp(0.62rem, 1.17vw, 1.38rem); }
+.d-sm { font-size: clamp(0.45rem, 0.66vw, 0.83rem); }
 
 .data {
   font-family: var(--font-data);
@@ -121,7 +141,7 @@ body::before {
   font-size: clamp(1.02rem, 1.15vw, 1.35rem);
   line-height: 1.72;
   color: var(--color-pearl-dim);
-  font-weight: 300;
+  font-weight: 400;
   max-width: 52ch;
 }
 
@@ -404,6 +424,41 @@ input[type="range"]::-moz-range-thumb {
 
 .hairline-t { border-top: 1px solid var(--color-line); }
 .hairline-b { border-bottom: 1px solid var(--color-line); }
+
+/* card hover lift effect */
+.card-lift {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* gradient border accent */
+.border-iri {
+  border-image: linear-gradient(135deg, var(--color-gold), var(--color-flare), var(--color-iris), var(--color-aqua)) 1;
+}
+
+/* shimmer loading effect */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* fade-up on scroll utility */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes fade-up {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

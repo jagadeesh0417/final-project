@@ -5,7 +5,6 @@ import Footer from "../components/chrome/Footer";
 import Cursor from "../components/chrome/Cursor";
 import Preloader from "../components/chrome/Preloader";
 import SmoothScroll from "../components/chrome/SmoothScroll";
-import SheetFrame from "../components/chrome/SheetFrame";
 import { FavouritesProvider } from "../lib/favourites";
 
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -43,7 +42,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothScroll />
           <Preloader />
           <Cursor />
-          <SheetFrame />
           <span className="grain" aria-hidden />
 
           <a

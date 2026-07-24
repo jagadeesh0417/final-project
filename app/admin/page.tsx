@@ -5,8 +5,8 @@ import { PROPERTIES } from "../../lib/data";
 import type { Inquiry } from "../../lib/types";
 
 export const metadata: Metadata = {
-  title: "The desk",
-  description: "Internal register management.",
+  title: "Admin Panel",
+  description: "Full register and enquiry management.",
   robots: { index: false, follow: false },
 };
 

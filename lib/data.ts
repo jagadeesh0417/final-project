@@ -192,7 +192,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Ananya Rao",
       "firm": "AKRADHI Private Office",
-      "phone": "+91 98490 11204"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": true,
@@ -233,7 +233,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Karthik Iyer",
       "firm": "AKRADHI South",
-      "phone": "+91 99000 55187"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": true,
@@ -273,7 +273,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Farah Sheikh",
       "firm": "AKRADHI Coastal",
-      "phone": "+91 90300 74412"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": true,
@@ -315,7 +315,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Devansh Mehta",
       "firm": "AKRADHI Land Desk",
-      "phone": "+91 89770 60931"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -357,7 +357,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Nivedita Menon",
       "firm": "AKRADHI Commercial",
-      "phone": "+91 94470 22608"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -440,7 +440,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Karthik Iyer",
       "firm": "AKRADHI South",
-      "phone": "+91 99000 55187"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -481,7 +481,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Farah Sheikh",
       "firm": "AKRADHI Coastal",
-      "phone": "+91 90300 74412"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": true,
@@ -524,7 +524,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Devansh Mehta",
       "firm": "AKRADHI Land Desk",
-      "phone": "+91 89770 60931"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -566,7 +566,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Nivedita Menon",
       "firm": "AKRADHI Commercial",
-      "phone": "+91 94470 22608"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -650,7 +650,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Karthik Iyer",
       "firm": "AKRADHI South",
-      "phone": "+91 99000 55187"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -692,7 +692,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Farah Sheikh",
       "firm": "AKRADHI Coastal",
-      "phone": "+91 90300 74412"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -734,7 +734,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Devansh Mehta",
       "firm": "AKRADHI Land Desk",
-      "phone": "+91 89770 60931"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -775,7 +775,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Nivedita Menon",
       "firm": "AKRADHI Commercial",
-      "phone": "+91 94470 22608"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -856,7 +856,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Karthik Iyer",
       "firm": "AKRADHI South",
-      "phone": "+91 99000 55187"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -899,7 +899,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Farah Sheikh",
       "firm": "AKRADHI Coastal",
-      "phone": "+91 90300 74412"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -941,7 +941,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Devansh Mehta",
       "firm": "AKRADHI Land Desk",
-      "phone": "+91 89770 60931"
+      "phone": "+91 98485 79053"
     },
     "status": "pending",
     "featured": false,
@@ -982,7 +982,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Nivedita Menon",
       "firm": "AKRADHI Commercial",
-      "phone": "+91 94470 22608"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -1064,7 +1064,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Karthik Iyer",
       "firm": "AKRADHI South",
-      "phone": "+91 99000 55187"
+      "phone": "+91 98485 79053"
     },
     "status": "rejected",
     "featured": false,
@@ -1107,7 +1107,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Farah Sheikh",
       "firm": "AKRADHI Coastal",
-      "phone": "+91 90300 74412"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": false,
@@ -1149,7 +1149,7 @@ export const PROPERTIES: Property[] = [
     "agent": {
       "name": "Devansh Mehta",
       "firm": "AKRADHI Land Desk",
-      "phone": "+91 89770 60931"
+      "phone": "+91 98485 79053"
     },
     "status": "approved",
     "featured": true,
