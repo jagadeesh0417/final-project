@@ -1,4 +1,3 @@
-import Crystal from "../three/Crystal";
 import RevealText from "../motion/RevealText";
 import Reveal from "../motion/Reveal";
 import SearchBar from "../ui/SearchBar";
@@ -9,10 +8,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-24 md:pt-28">
-      <div className="absolute inset-0 -z-10">
-        <Crystal />
-        <div className="absolute inset-0 bg-gradient-to-b from-void/70 via-transparent to-void" />
-      </div>
+      <div className="absolute inset-0 -z-10 bg-void" />
 
       <div className="shell relative flex min-h-[calc(100svh-7rem)] flex-col justify-between pb-10">
         <div className="max-w-4xl">
