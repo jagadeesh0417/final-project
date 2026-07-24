@@ -40,6 +40,7 @@ export interface Property {
   yearBuilt: number;
   address: Address;
   amenities: string[];
+  images: string[];
   sheet: number;
   agent: Agent;
   status: Status;

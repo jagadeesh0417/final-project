@@ -52,7 +52,6 @@ export default async function PropertyPage({
   const p = bySlug(slug);
   if (!p || p.status !== "approved") notFound();
 
-  const sheets = [p.sheet, ((p.sheet + 3) % 12) + 1, ((p.sheet + 6) % 12) + 1, ((p.sheet + 9) % 12) + 1];
   const others = related(p);
 
   const jsonLd = {
@@ -105,7 +104,7 @@ export default async function PropertyPage({
       </header>
 
       <div className="shell">
-        <Gallery sheets={sheets} title={p.title} />
+        <Gallery images={p.images} title={p.title} />
       </div>
 
       <div className="shell mt-14 grid gap-12 pb-8 lg:grid-cols-[1fr_380px] lg:gap-16">

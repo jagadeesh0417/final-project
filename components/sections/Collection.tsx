@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { area, price } from "../../lib/format";
 import type { Property } from "../../lib/types";
 import FacingMark from "../ui/FacingMark";
-import Plate from "../ui/Plate";
+
 
 /**
  * Pinned section that translates a row of plates sideways as the page scrolls.
@@ -28,7 +28,7 @@ export default function Collection({ items }: { items: Property[] }) {
     >
       <div className="relative aspect-[3/4] overflow-hidden lg:aspect-[4/5]">
         <div className="absolute inset-0 transition-transform duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105">
-          <Plate seed={p.sheet} />
+          <img src={p.images[0]} alt={p.title} className="h-full w-full object-cover" loading="lazy" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/10 to-transparent" />
 

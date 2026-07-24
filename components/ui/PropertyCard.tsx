@@ -6,7 +6,6 @@ import { useRef } from "react";
 import { area, price } from "../../lib/format";
 import type { Property } from "../../lib/types";
 import FacingMark from "./FacingMark";
-import Plate from "./Plate";
 import Favourite from "./Favourite";
 
 /**
@@ -70,7 +69,12 @@ export default function PropertyCard({ p, index = 0 }: { p: Property; index?: nu
           <div className="relative aspect-[4/3] overflow-hidden bg-void">
             <motion.div style={{ x: still ? 0 : ix, y: still ? 0 : iy }} className="absolute -inset-6">
               <div className="absolute inset-0 transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]">
-                <Plate seed={p.sheet} />
+                <img
+                  src={p.images[0]}
+                  alt={p.title}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </motion.div>
 
