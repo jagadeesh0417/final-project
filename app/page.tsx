@@ -1,8 +1,7 @@
 import Hero from "../components/sections/Hero";
 import WhyUs from "../components/sections/WhyUs";
 import Ledger from "../components/sections/Ledger";
-import FeaturedProperties from "../components/sections/FeaturedProperties";
-import Collection from "../components/sections/Collection";
+import ScrollingStrip from "../components/sections/ScrollingStrip";
 import Cities from "../components/sections/Cities";
 import Method from "../components/sections/Method";
 import Enquire from "../components/sections/Enquire";
@@ -16,8 +15,7 @@ export default function HomePage() {
       <Hero />
       <WhyUs />
       <Ledger />
-      <FeaturedProperties items={featured} />
-      <Collection items={featured} />
+      <ScrollingStrip items={featured} />
       <Cities />
       <Method />
       <Enquire />

@@ -11,7 +11,6 @@ const LINKS = [
   { href: "/properties?deal=rent", label: "To let" },
   { href: "/filters", label: "Search" },
   { href: "/contact", label: "Contact" },
-  { href: "/admin", label: "Admin" },
 ];
 
 export default function Nav() {

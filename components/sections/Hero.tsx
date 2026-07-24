@@ -2,6 +2,7 @@ import Link from "next/link";
 import RevealText from "../motion/RevealText";
 import Reveal from "../motion/Reveal";
 import SearchBar from "../ui/SearchBar";
+import ParallaxImage from "../motion/ParallaxImage";
 import { PROPERTIES } from "../../lib/data";
 import { priceShort } from "../../lib/format";
 
@@ -13,13 +14,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90svh] overflow-hidden">
-      {/* background image */}
-      <div className="absolute inset-0">
-        <img
-          src={hero.images[0]}
-          alt=""
-          className="h-full w-full object-cover"
-        />
+      {/* 3D parallax background image */}
+      <div className="absolute inset-0 perspective-[1200px]">
+        <ParallaxImage src={hero.images[0]} alt="" />
         <div className="absolute inset-0 bg-gradient-to-r from-void/95 via-void/80 to-void/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
       </div>
