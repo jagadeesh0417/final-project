@@ -12,40 +12,42 @@ export default function Ledger() {
   const rows: Array<[string, React.ReactNode, string]> = [
     ["Live listings", <Counter key="a" to={live.length} />, "Surveyed and published"],
     ["Land held", <Counter key="b" to={acres} decimals={1} suffix=" ac" />, "Across four layouts"],
-    ["Cities", <Counter key="c" to={cities} />, "Deccan, coast and south"],
+    ["Cities covered", <Counter key="c" to={cities} />, "Deccan, coast and south"],
     ["Oldest fabric", <span key="d">{oldest}</span>, "Still standing, still let"],
   ];
 
   return (
-    <section className="shell py-24 md:py-36">
-      <div className="grid gap-10 md:grid-cols-[1fr_1.1fr] md:gap-20">
-        <div>
-          <Reveal>
-            <p className="eyebrow">The register</p>
+    <section className="py-20 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-20">
+          <div>
+            <Reveal>
+              <span className="badge">The register</span>
+            </Reveal>
+            <RevealText
+              as="h2"
+              text="A short book, kept carefully."
+              className="display d-lg mt-6"
+            />
+          </div>
+          <Reveal delay={0.15}>
+            <p className="lede">
+              We would rather carry twenty-four properties we can answer questions
+              about than four hundred we cannot. Everything below has a measured
+              drawing, a title check, and a named person who has walked it.
+            </p>
           </Reveal>
-          <RevealText
-            as="h2"
-            text="A short book, kept carefully."
-            className="display d-lg mt-6"
-          />
         </div>
-        <Reveal delay={0.15}>
-          <p className="lede">
-            We would rather carry twenty-four properties we can answer questions about than four
-            hundred we cannot. Everything below has a measured drawing, a title check and a named
-            person who has walked it.
-          </p>
-        </Reveal>
-      </div>
 
-      <div className="mt-16 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-        {rows.map(([label, value, note], i) => (
-          <Reveal key={label} delay={i * 0.08} className="bg-void p-6 md:p-8">
-            <p className="data">{label}</p>
-            <p className="display d-lg mt-6 text-gold">{value}</p>
-            <p className="data mt-4 text-muted">{note}</p>
-          </Reveal>
-        ))}
+        <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {rows.map(([label, value, note], i) => (
+            <Reveal key={label} delay={i * 0.08} className="bg-surface p-6 md:p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">{label}</p>
+              <p className="display d-lg mt-4 text-aqua">{value}</p>
+              <p className="mt-3 text-xs text-pearl-dim">{note}</p>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

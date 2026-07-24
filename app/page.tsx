@@ -1,5 +1,7 @@
 import Hero from "../components/sections/Hero";
+import WhyUs from "../components/sections/WhyUs";
 import Ledger from "../components/sections/Ledger";
+import FeaturedProperties from "../components/sections/FeaturedProperties";
 import Collection from "../components/sections/Collection";
 import Cities from "../components/sections/Cities";
 import Method from "../components/sections/Method";
@@ -12,7 +14,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <WhyUs />
       <Ledger />
+      <FeaturedProperties items={featured} />
       <Collection items={featured} />
       <Cities />
       <Method />
