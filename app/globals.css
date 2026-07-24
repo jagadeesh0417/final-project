@@ -94,10 +94,10 @@ body::before {
   letter-spacing: -0.018em;
 }
 
-.d-xl { font-size: clamp(3rem, 11.5vw, 14rem); }
-.d-lg { font-size: clamp(2.4rem, 6.4vw, 7.4rem); }
-.d-md { font-size: clamp(1.8rem, 3.4vw, 4rem); }
-.d-sm { font-size: clamp(1.3rem, 1.9vw, 2.4rem); }
+.d-xl { font-size: clamp(0.9rem, 3.45vw, 4.2rem); }
+.d-lg { font-size: clamp(0.72rem, 1.92vw, 2.22rem); }
+.d-md { font-size: clamp(0.54rem, 1.02vw, 1.2rem); }
+.d-sm { font-size: clamp(0.39rem, 0.57vw, 0.72rem); }
 
 .data {
   font-family: var(--font-data);
