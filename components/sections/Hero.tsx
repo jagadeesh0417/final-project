@@ -5,10 +5,19 @@ import { PROPERTIES } from "../../lib/data";
 
 export default function Hero() {
   const live = PROPERTIES.filter((p) => p.status === "approved").length;
+  const hero = PROPERTIES.find((p) => p.featured && p.images?.length) ?? PROPERTIES[0];
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-24 md:pt-28">
-      <div className="absolute inset-0 -z-10 bg-void" />
+      <div className="absolute inset-0 -z-10">
+        <img
+          src={hero.images[0]}
+          alt=""
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-void/95 via-void/75 to-void/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-void/20" />
+      </div>
 
       <div className="shell relative flex min-h-[calc(100svh-7rem)] flex-col justify-between pb-10">
         <div className="max-w-4xl">
