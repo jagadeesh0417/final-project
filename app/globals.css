@@ -1,0 +1,415 @@
+@import "tailwindcss";
+
+/* ============================================================
+   MERIDIAN — design tokens
+   Direction: iridescence. A violet-black void, molten amber,
+   and a chromatic film that shifts through iris and aqua.
+   ============================================================ */
+
+@theme {
+  --color-void: #08060e;
+  --color-void-2: #110c1c;
+  --color-void-3: #1a1229;
+  --color-line: #2b2140;
+  --color-line-2: #3d2f58;
+  --color-pearl: #f4effa;
+  --color-pearl-dim: #b7a9ce;
+  --color-muted: #7a6b96;
+  --color-gold: #f0b23f;
+  --color-gold-2: #8a5f17;
+  --color-iris: #9a85ff;
+  --color-aqua: #46e0d0;
+  --color-flare: #ff6a8d;
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-ui: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-data: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --iri: linear-gradient(100deg, #f0b23f 0%, #ff6a8d 30%, #9a85ff 62%, #46e0d0 100%);
+}
+
+/* ---------- base ---------- */
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  background: var(--color-void);
+  color: var(--color-pearl);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ambient chromatic light, fixed behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(48rem 38rem at 12% 8%, rgba(154, 133, 255, 0.16), transparent 60%),
+    radial-gradient(42rem 34rem at 88% 22%, rgba(240, 178, 63, 0.13), transparent 62%),
+    radial-gradient(46rem 40rem at 62% 92%, rgba(70, 224, 208, 0.1), transparent 64%);
+  filter: blur(12px);
+}
+
+::selection {
+  background: var(--color-iris);
+  color: var(--color-void);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- type ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.018em;
+}
+
+.d-xl { font-size: clamp(3rem, 11.5vw, 14rem); }
+.d-lg { font-size: clamp(2.4rem, 6.4vw, 7.4rem); }
+.d-md { font-size: clamp(1.8rem, 3.4vw, 4rem); }
+.d-sm { font-size: clamp(1.3rem, 1.9vw, 2.4rem); }
+
+.data {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 400;
+}
+@media (min-width: 1536px) { .data { font-size: 0.76rem; } }
+
+.data-lg {
+  font-family: var(--font-data);
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: var(--color-pearl-dim);
+}
+@media (min-width: 1536px) { .data-lg { font-size: 1rem; } }
+
+.lede {
+  font-size: clamp(1.02rem, 1.15vw, 1.35rem);
+  line-height: 1.72;
+  color: var(--color-pearl-dim);
+  font-weight: 300;
+  max-width: 52ch;
+}
+
+/* ---------- iridescence ---------- */
+
+.iri {
+  background: var(--iri);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: iri-shift 9s ease-in-out infinite alternate;
+}
+
+@keyframes iri-shift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* a hairline that carries the full spectrum */
+.hairline-iri {
+  height: 1px;
+  background: var(--iri);
+  opacity: 0.55;
+}
+
+/* frosted panel with a chromatic edge */
+.glass {
+  position: relative;
+  background: rgba(244, 239, 250, 0.022);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(244, 239, 250, 0.07);
+}
+
+.glass-iri {
+  position: relative;
+  background: rgba(244, 239, 250, 0.025);
+  backdrop-filter: blur(14px);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.glass-iri::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: var(--iri);
+  opacity: 0.28;
+  transition: opacity 0.6s var(--ease-out-expo);
+}
+.glass-iri:hover::before { opacity: 0.62; }
+
+/* soft coloured light source */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(72px);
+  opacity: 0.4;
+}
+
+.eyebrow {
+  font-family: var(--font-data);
+  font-size: 0.65rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--iri);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: iri-shift 9s ease-in-out infinite alternate;
+}
+.eyebrow::before {
+  content: "";
+  width: 2.6rem;
+  height: 1px;
+  background: var(--iri);
+  opacity: 0.8;
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-line-2), transparent);
+}
+
+.field {
+  border: 1px solid transparent;
+  padding: 1rem 1.15rem;
+  background: rgba(244, 239, 250, 0.02);
+  transition: background 0.5s var(--ease-out-expo);
+}
+.field:hover { background: rgba(244, 239, 250, 0.045); }
+.field dt {
+  font-family: var(--font-data);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+.field dd {
+  font-size: 1rem;
+  color: var(--color-pearl);
+  font-weight: 300;
+}
+
+/* ---------- controls ---------- */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  font-family: var(--font-data);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1.05rem 1.9rem;
+  border: 1px solid var(--color-line-2);
+  color: var(--color-pearl);
+  background: rgba(244, 239, 250, 0.02);
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.5s var(--ease-out-expo), border-color 0.5s var(--ease-out-expo);
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--iri);
+  transform: translateY(101%);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.btn:hover {
+  color: var(--color-void);
+  border-color: transparent;
+}
+.btn:hover::after { transform: translateY(0); }
+
+.btn-solid {
+  color: var(--color-void);
+  border-color: transparent;
+  background: var(--iri);
+  background-size: 200% 100%;
+  font-weight: 600;
+  animation: iri-shift 9s ease-in-out infinite alternate;
+}
+.btn-solid::after { display: none; }
+.btn-solid:hover {
+  color: var(--color-void);
+  filter: brightness(1.14);
+}
+
+.input,
+.select,
+textarea.input {
+  width: 100%;
+  background: rgba(244, 239, 250, 0.03);
+  border: 1px solid var(--color-line);
+  color: var(--color-pearl);
+  padding: 0.8rem 0.95rem;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 300;
+  transition: border-color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+}
+.input:focus,
+.select:focus {
+  border-color: var(--color-iris);
+  box-shadow: 0 0 0 3px rgba(154, 133, 255, 0.13);
+  outline: none;
+}
+.input::placeholder { color: var(--color-muted); }
+.select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position: calc(100% - 16px) calc(50% - 2px), calc(100% - 11px) calc(50% - 2px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.3rem;
+}
+
+.chip {
+  font-family: var(--font-data);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-pearl-dim);
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.4s var(--ease-out-expo);
+}
+.chip:hover {
+  border-color: var(--color-line-2);
+  color: var(--color-pearl);
+}
+.chip[data-on="true"] {
+  border-color: transparent;
+  color: var(--color-void);
+  background: var(--iri);
+  font-weight: 600;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--color-line-2);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 12px rgba(240, 178, 63, 0.6);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: none;
+  cursor: pointer;
+}
+
+.ulink { position: relative; display: inline-block; }
+.ulink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--iri);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.55s var(--ease-out-expo);
+}
+.ulink:hover::after { transform: scaleX(1); transform-origin: left; }
+
+@media (hover: hover) and (pointer: fine) {
+  .has-cursor, .has-cursor a, .has-cursor button { cursor: none; }
+}
+
+.shell {
+  width: 100%;
+  max-width: 1840px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4.5vw, 6rem);
+  position: relative;
+}
+
+/* Most visitors arrive on a desktop, so the layout scales up rather than
+   capping at a tablet-sized column. */
+@media (min-width: 1536px) {
+  body { font-size: 17px; }
+}
+@media (min-width: 1920px) {
+  body { font-size: 18px; }
+  .shell { padding-inline: 7rem; }
+}
+
+/* vertical rhythm, tuned per breakpoint */
+.section { padding-block: 5rem; }
+@media (min-width: 768px) { .section { padding-block: 8rem; } }
+@media (min-width: 1536px) { .section { padding-block: 11rem; } }
+
+.hairline-t { border-top: 1px solid var(--color-line); }
+.hairline-b { border-bottom: 1px solid var(--color-line); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .grain { display: none; }
+}
