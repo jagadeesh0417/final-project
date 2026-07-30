@@ -1,24 +1,22 @@
 import Hero from "../components/sections/Hero";
-import WhyUs from "../components/sections/WhyUs";
-import Ledger from "../components/sections/Ledger";
-import ScrollingStrip from "../components/sections/ScrollingStrip";
-import Cities from "../components/sections/Cities";
-import Method from "../components/sections/Method";
-import Enquire from "../components/sections/Enquire";
-import { PROPERTIES } from "../lib/data";
+import SearchBar from "../components/sections/SearchBar";
+import FeaturedListings from "../components/sections/FeaturedListings";
+import WhyChooseUs from "../components/sections/WhyChooseUs";
+import Statistics from "../components/sections/Statistics";
+import Testimonials from "../components/sections/Testimonials";
+import Gallery from "../components/sections/Gallery";
+import CTA from "../components/sections/CTA";
 
 export default function HomePage() {
-  const featured = PROPERTIES.filter((p) => p.featured && p.status === "approved").slice(0, 6);
-
   return (
     <>
       <Hero />
-      <WhyUs />
-      <Ledger />
-      <ScrollingStrip items={featured} />
-      <Cities />
-      <Method />
-      <Enquire />
+      <FeaturedListings />
+      <WhyChooseUs />
+      <Statistics />
+      <Testimonials />
+      <Gallery />
+      <CTA />
     </>
   );
 }

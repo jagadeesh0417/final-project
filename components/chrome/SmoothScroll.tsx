@@ -1,31 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
 
-/** Inertial scrolling, disabled outright when the OS asks for reduced motion. */
 export default function SmoothScroll() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 1.6,
-    });
-
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      lenis.destroy();
-    };
+    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
+    (async () => {
+      try {
+        const Lenis = (await import("lenis")).default;
+        lenis = new Lenis({ duration: 1.3, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        const raf = (t: number) => { lenis?.raf(t); requestAnimationFrame(raf); };
+        requestAnimationFrame(raf);
+      } catch { /* lenis not available */ }
+    })();
+    return () => lenis?.destroy();
   }, []);
-
   return null;
 }

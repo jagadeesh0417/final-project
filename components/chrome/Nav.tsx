@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useFavourites } from "../../lib/favourites";
+import { useTheme } from "./DarkModeProvider";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -14,13 +15,14 @@ const LINKS = [
 ];
 
 export default function Nav() {
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { ids, ready } = useFavourites();
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -30,14 +32,18 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-400 ${
-        solid
-          ? "bg-surface/90 shadow-sm backdrop-blur-md"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? "py-2" : "py-4"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 md:h-20 md:px-8">
-        <Link href="/" className="display text-xl tracking-tight md:text-2xl" data-cursor="HOME">
+      <nav
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 transition-all duration-500 md:px-8 ${
+          scrolled
+            ? "glass-card rounded-2xl px-5 py-2 md:px-6"
+            : "px-0"
+        }`}
+      >
+        <Link href="/" className="display text-xl tracking-tight md:text-2xl">
           AKRADHI
         </Link>
 
@@ -57,24 +63,37 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-3">
+          {/* dark mode toggle */}
+          <button
+            onClick={toggle}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line transition-colors hover:border-gold"
+            aria-label="Toggle dark mode"
+          >
+            {theme === "light" ? (
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            )}
+          </button>
+
           <Link
             href="/favourites"
-            className="flex items-center gap-2 rounded border border-line bg-surface px-3 py-2 text-xs font-medium uppercase tracking-wider transition-colors hover:border-gold hover:text-gold"
-            data-cursor="FAVOURITES"
+            className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-xs font-medium uppercase tracking-wider transition-colors hover:border-gold hover:text-gold"
           >
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-            <span className="tabular-nums text-gold">
-              {ready ? String(ids.length).padStart(2, "0") : "--"}
-            </span>
+            <span className="tabular-nums">{ready ? String(ids.length).padStart(2, "0") : "--"}</span>
           </Link>
 
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded border border-line md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line md:hidden"
             aria-expanded={open}
-            aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -88,17 +107,15 @@ export default function Nav() {
         </div>
       </nav>
 
-      {open ? (
-        <div id="mobile-nav" className="border-t border-line bg-surface px-5 pb-6 pt-4 md:hidden">
+      {open && (
+        <div className="mx-5 mt-2 overflow-hidden rounded-2xl border border-line bg-surface/95 px-4 pb-5 pt-4 shadow-lg backdrop-blur-md md:hidden">
           <ul className="flex flex-col gap-1">
             {LINKS.map((l) => (
               <li key={l.label}>
                 <Link
                   href={l.href}
-                  className={`block rounded px-4 py-3 text-base font-medium transition-colors ${
-                    pathname === l.href
-                      ? "bg-aqua/10 text-aqua"
-                      : "text-pearl-dim hover:bg-void-2 hover:text-pearl"
+                  className={`block rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                    pathname === l.href ? "bg-gold/10 text-gold" : "text-pearl-dim hover:bg-void-2"
                   }`}
                 >
                   {l.label}
@@ -107,7 +124,7 @@ export default function Nav() {
             ))}
           </ul>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

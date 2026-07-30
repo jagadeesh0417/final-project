@@ -2,24 +2,21 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "../components/chrome/Nav";
 import Footer from "../components/chrome/Footer";
-import Cursor from "../components/chrome/Cursor";
-import Preloader from "../components/chrome/Preloader";
+import ScrollProgress from "../components/chrome/ScrollProgress";
+import CustomCursor from "../components/chrome/CustomCursor";
 import SmoothScroll from "../components/chrome/SmoothScroll";
 import { FavouritesProvider } from "../lib/favourites";
+import DarkModeProvider from "../components/chrome/DarkModeProvider";
 
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: {
-    default: "AKRADHI — Property, surveyed before it is published",
-    template: "%s — AKRADHI",
-  },
-  description:
-    "A private-office property practice working across Hyderabad, Bengaluru, the Konkan coast and the south. Houses, apartments, land and commercial floors.",
+  title: { default: "AKRADHI — Luxury Property, Verified", template: "%s — AKRADHI" },
+  description: "Premium verified properties across South India. Every listing surveyed, photographed, and documented.",
   openGraph: {
-    title: "AKRADHI — Property",
-    description: "Houses, apartments, land and commercial floors across south India.",
+    title: "AKRADHI — Luxury Property",
+    description: "Premium verified properties across South India.",
     type: "website",
     url: site,
   },
@@ -28,33 +25,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Sora:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         />
       </head>
       <body>
-        <FavouritesProvider>
-          <SmoothScroll />
-          <Preloader />
-          <Cursor />
-          <span className="grain" aria-hidden />
+        <DarkModeProvider>
+          <FavouritesProvider>
+            <ScrollProgress />
+            <SmoothScroll />
+            <CustomCursor />
+            <Nav />
 
-          <a
-            href="#main"
-            className="data sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:border focus:border-gold focus:bg-void focus:px-4 focus:py-3 focus:text-pearl"
-          >
-            Skip to content
-          </a>
+            <main id="main">{children}</main>
 
-          <Nav />
-          <main id="main">{children}</main>
-          <Footer />
-        </FavouritesProvider>
+            <Footer />
+          </FavouritesProvider>
+        </DarkModeProvider>
       </body>
     </html>
   );
