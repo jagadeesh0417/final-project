@@ -14,14 +14,9 @@ export default function SmoothScroll() {
           orientation: "vertical",
           smoothWheel: true,
         });
-        const raf = (t: number) => {
-          lenis?.raf(t);
-          requestAnimationFrame(raf);
-        };
+        const raf = (t: number) => { lenis?.raf(t); requestAnimationFrame(raf); };
         requestAnimationFrame(raf);
-      } catch {
-        /* lenis not available */
-      }
+      } catch { /* lenis unavailable */ }
     })();
     return () => lenis?.destroy();
   }, []);

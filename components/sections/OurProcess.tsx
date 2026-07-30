@@ -2,62 +2,58 @@
 
 import { motion } from "framer-motion";
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 const STEPS = [
-  { num: "01", title: "Discover", desc: "Browse our curated collection of verified luxury properties across South India. Each listing includes detailed photography and documentation." },
+  { num: "01", title: "Discover", desc: "Browse our curated collection of verified luxury properties. Each listing includes detailed photography and comprehensive documentation." },
   { num: "02", title: "Visit", desc: "Schedule a private viewing at your convenience. Our concierge team arranges everything within 48 hours." },
-  { num: "03", title: "Documentation", desc: "Our legal team handles due diligence, title verification, and all paperwork. Transparent process from start to finish." },
+  { num: "03", title: "Legal", desc: "Our legal team handles due diligence, title verification, and all paperwork. Transparent from start to finish." },
   { num: "04", title: "Move In", desc: "Seamless handover with full support. From registration to interior setup, we ensure a smooth transition." },
 ];
 
-const ease = [0.16, 1, 0.3, 1] as const;
-
 export default function OurProcess() {
   return (
-    <section className="bg-[#f5f3ef] py-[100px]">
+    <section className="section">
       <div className="container-lux">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease }}
-          className="mb-16 text-center"
+          className="mb-16"
         >
-          <span className="section-label">Our Process</span>
-          <h2 className="display d-xl">How It Works</h2>
-          <p className="mx-auto mt-4 max-w-lg text-muted">
-            From discovery to move-in, we make luxury property acquisition effortless.
-          </p>
+          <span className="badge">Our Process</span>
+          <h2 className="display d-xl mt-3 max-w-2xl">From discovery to keys — a seamless journey.</h2>
         </motion.div>
 
-        <div className="relative mx-auto max-w-5xl">
-          {/* Connecting line */}
-          <div className="absolute left-[23px] top-0 hidden h-full w-px bg-border md:block" />
+        {/* Horizontal timeline */}
+        <div className="relative">
+          {/* Progress line */}
+          <div className="absolute left-0 top-8 h-px w-full bg-border" />
+          <motion.div
+            initial={{ width: "0%" }}
+            whileInView={{ width: "100%" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 0.3, ease }}
+            className="absolute left-0 top-8 h-px bg-gold"
+          />
 
-          <div className="flex flex-col gap-16">
+          <div className="grid gap-8 md:grid-cols-4">
             {STEPS.map((s, i) => (
               <motion.div
                 key={s.num}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, ease, delay: i * 0.1 }}
-                className={`relative flex flex-col gap-6 md:flex-row ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.15, duration: 0.6, ease }}
+                className="relative pt-16"
               >
-                {/* Number */}
-                <div className="relative z-10 flex items-start md:w-24">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold bg-bg text-lg font-semibold text-gold md:h-14 md:w-14">
-                    {s.num}
-                  </div>
+                <div className="absolute left-0 top-[29px] z-10 flex h-[18px] w-[18px] -translate-y-1/2 items-center justify-center rounded-full border-2 border-gold bg-bg">
+                  <div className="h-[6px] w-[6px] rounded-full bg-gold" />
                 </div>
-
-                {/* Content */}
-                <div className={`flex-1 ${i % 2 === 1 ? "md:text-right" : ""}`}>
-                  <h3 className="display d-md">{s.title}</h3>
-                  <p className="mt-3 max-w-md leading-relaxed text-muted">{s.desc}</p>
-                </div>
-
-                {/* Spacer for alternating */}
-                <div className="hidden flex-1 md:block" />
+                <span className="num text-4xl text-gold/20">{s.num}</span>
+                <h3 className="display d-sm mt-3 font-medium">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray">{s.desc}</p>
               </motion.div>
             ))}
           </div>
