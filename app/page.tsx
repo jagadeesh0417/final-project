@@ -1,21 +1,26 @@
 import Hero from "../components/sections/Hero";
-import SearchBar from "../components/sections/SearchBar";
-import FeaturedListings from "../components/sections/FeaturedListings";
-import WhyChooseUs from "../components/sections/WhyChooseUs";
-import Statistics from "../components/sections/Statistics";
+import FeaturedCollection from "../components/sections/FeaturedCollection";
+import WhyAkradhi from "../components/sections/WhyAkradhi";
+import PropertyGrid from "../components/sections/PropertyGrid";
+import FeaturedProjects from "../components/sections/FeaturedProjects";
+import OurProcess from "../components/sections/OurProcess";
 import Testimonials from "../components/sections/Testimonials";
 import Gallery from "../components/sections/Gallery";
+import Investment from "../components/sections/Investment";
 import CTA from "../components/sections/CTA";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <FeaturedListings />
-      <WhyChooseUs />
-      <Statistics />
+      <FeaturedCollection />
+      <WhyAkradhi />
+      <PropertyGrid />
+      <FeaturedProjects />
+      <OurProcess />
       <Testimonials />
       <Gallery />
+      <Investment />
       <CTA />
     </>
   );
